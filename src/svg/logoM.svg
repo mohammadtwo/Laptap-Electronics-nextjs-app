@@ -1,0 +1,30 @@
+<svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#853cff"/>
+      <stop offset="100%" stop-color="#ae7dff"/>
+    </linearGradient>
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#853cff" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#ae7dff" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <!-- لپ‌تاپ باز (بدنه + صفحه نمایش) -->
+  <!-- صفحه نمایش با گرادیان ملایم -->
+  <rect x="12" y="10" width="30" height="20" rx="2" fill="url(#screenGrad)" stroke="url(#purpleGrad)" stroke-width="2"/>
+  <!-- نوار دوربین در بالای صفحه -->
+  <circle cx="27" cy="13" r="1" fill="#853cff"/>
+  <!-- لولای لپ‌تاپ (خط زیر صفحه) -->
+  <line x1="14" y1="30" x2="40" y2="30" stroke="#ae7dff" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- کیبورد (ردیف خطوط در بخش پایین) -->
+  <line x1="16" y1="34" x2="38" y2="34" stroke="#ae7dff" stroke-width="1" opacity="0.6"/>
+  <line x1="18" y1="37" x2="36" y2="37" stroke="#ae7dff" stroke-width="1" opacity="0.4"/>
+  
+  <!-- نماد خرید (کیف کوچک در گوشه صفحه) -->
+
+  
+  <!-- متن لوگو -->
+  <text x="52" y="34" font-family="'Segoe UI', -apple-system, sans-serif" font-weight="800" font-size="22" fill="url(#purpleGrad)" letter-spacing="1">LAP<span style="fill:#853cff">STOP</span></text>
+  <text x="52" y="46" font-family="'Segoe UI', sans-serif" font-weight="500" font-size="9" fill="#71717a" letter-spacing="1.5">LAPTOP STORE</text>
+</svg>
