@@ -4,6 +4,12 @@
 
 /* src/styles/theme.css */
 @import "tailwindcss";
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("../fonts/Vazirmatn-VariableFont_wght.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+}
 
 /* ----- ریشه (لایت مود پیش‌فرض) ----- */
 :root {

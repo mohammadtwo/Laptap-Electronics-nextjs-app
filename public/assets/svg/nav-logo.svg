@@ -1,0 +1,27 @@
+<svg
+
+  viewBox="0 0 200 60"
+  xmlns="http://www.w3.org/2000/svg"
+  preserveAspectRatio="xMidYMid meet"
+>
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#853cff" />
+      <stop offset="100%" stop-color="#ae7dff" />
+    </linearGradient>
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#853cff" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#ae7dff" stop-opacity="0.05" />
+    </linearGradient>
+  </defs>
+
+  <rect x="12" y="18" width="30" height="20" rx="2" fill="url(#screenGrad)" stroke="url(#purpleGrad)" stroke-width="2"/>
+  <circle cx="27" cy="17" r="1" fill="#853cff"/>
+
+  <line x1="14" y1="38" x2="40" y2="38" stroke="#ae7dff" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="16" y1="42" x2="38" y2="42" stroke="#ae7dff" stroke-width="1" opacity="0.6"/>
+  <line x1="18" y1="45" x2="36" y2="45" stroke="#ae7dff" stroke-width="1" opacity="0.4"/>
+
+  <text x="52" y="34" font-family="'Segoe UI', system-ui" font-weight="800" font-size="22" fill="url(#purpleGrad)">LAPTOP</text>
+  <text x="52" y="46" font-family="'Segoe UI', system-ui" font-weight="500" font-size="10" fill="#71717a">ELECTRONICS</text>
+</svg>
