@@ -56,12 +56,25 @@ export default function Footer() {
       </svg>
     );
   return (
-    <div className="w-full flex h-20 items-center justify-between absolute left-0 bottom-0 text-[12px]">
-      <div className="flex-1 flex flex-col gap-2 whitespace-nowrap justify-center items-center">{liked}مورد پسند</div>
-      <div className="flex-1 flex flex-col gap-2 whitespace-nowrap justify-center items-center">{category}دسته بندی</div>
-      <div className="flex-1 flex flex-col gap-2 whitespace-nowrap justify-center items-center">{home}خانه</div>
-      <div className="flex-1 flex flex-col gap-2 whitespace-nowrap justify-center items-center">{profil}پروفایل</div>
-      <div className="flex-1 flex flex-col gap-2 whitespace-nowrap  justify-center items-center">{cart}سبد خرید</div>
+    <div className="w-full sm:hidden flex h-20 bg-linear-to-t from-purple-200     backdrop-blur-md  to-neutral-50  items-center justify-between absolute left-0 bottom-0 text-[12px]">
+      <div className="flex-1 flex flex-col h-full gap-2 whitespace-nowrap justify-center items-center">
+        {liked}مورد پسند
+      </div>
+      <div className="flex-1 flex flex-col h-full gap-2 whitespace-nowrap justify-center items-center">
+        {category}دسته بندی
+      </div>
+      <div
+        className="flex-1 flex flex-col h-full gap-2 whitespace-nowrap justify-center items-center 
+        "
+      >
+        {home}خانه
+      </div>
+      <div className="flex-1 flex flex-col h-full gap-2 whitespace-nowrap justify-center items-center">
+        {profil}پروفایل
+      </div>
+      <div className="flex-1 flex flex-col h-full gap-2 whitespace-nowrap  justify-center items-center">
+        {cart}سبد خرید
+      </div>
     </div>
   );
 }

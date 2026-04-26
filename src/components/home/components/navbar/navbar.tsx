@@ -3,10 +3,10 @@ import Image from "next/image";
 export default function Navbar() {
   return (
     <nav
-      className="flex  px mt-5 items-center justify-between
+      className="flex   px mt-5 items-center justify-between
      px-4"
     >
-      <ul className="flex gap-4 w-full  ">
+      <ul className="flex gap-4 w-full ">
         <li className="w-[85%] sm:w-[65%]  h-full">
           <div className="flex h-10 sm:h-15  justify-between px-2 pr-10 py-1 rounded-full bg-purple-100 border-3 border-purple-500  items-center text-neutral-500">
             <span>جست و جو</span>
@@ -31,10 +31,12 @@ export default function Navbar() {
             />
           </span>
         </li>
-      <div className="ml-auto sm:flex hidden gap-5">
-        <button className="bg-purple-300 border-2  border-purple-400 p-2 px-5 rounded-2xl whitespace-nowrap ">ثبت نام </button>
-        <button>سبد خرید</button>
-      </div>
+        <div className="ml-auto sm:flex hidden gap-5">
+          <button className="bg-purple-300 border-2  border-purple-400 p-2 px-5 rounded-2xl whitespace-nowrap ">
+            ثبت نام
+          </button>
+          <button>سبد خرید</button>
+        </div>
       </ul>
     </nav>
   );

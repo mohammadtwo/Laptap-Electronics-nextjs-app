@@ -5,7 +5,7 @@ import Footer from "../footer/footer";
 export default function Home() {
   return (<>
     <header>
-      <div className="flex flex-row-reverse  gap-10 w-full sm:h-18 h-15 bg-linear-to-l  via-purple-50 to-purple-100">
+      <div className="flex flex-row-reverse   gap-10 w-full sm:h-18 h-15 bg-linear-to-l  via-purple-50 to-purple-100">
         <div
           className="my-auto text-start whitespace-nowrap flex-1 ml-2 
           text-ms text-shadow-neutral-50 text-shadow-2xs
