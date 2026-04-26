@@ -1,2 +1,92 @@
 @import "tailwindcss";
 
+/* فایل CSS - نسخه با کنترل دستی */
+
+/* src/styles/theme.css */
+@import "tailwindcss";
+
+/* ----- ریشه (لایت مود پیش‌فرض) ----- */
+:root {
+  /* بنفش‌ها (primary) */
+  --color-purple-50:  #e7d8ff;   /* روشن‌ترین */
+  --color-purple-100: #d6beff;
+  --color-purple-200: #c29eff;
+  --color-purple-300: #ae7dff;
+  --color-purple-400: #995dff;
+  --color-purple-500: #853cff;   /* اصلی */
+  --color-purple-600: #6f32d5;
+  --color-purple-700: #5928aa;
+  --color-purple-800: #431e80;
+  --color-purple-900: #2c1455;
+  --color-purple-950: #1a0a3a;   /* تیره‌ترین (مقدار فرضی) */
+
+  /* خنثی (neutral) */
+  --color-neutral-50:  #fafafa;
+  --color-neutral-100: #f4f4f5;
+  --color-neutral-200: #e4e4e7;
+  --color-neutral-300: #d4d4d8;
+  --color-neutral-400: #a1a1aa;
+  --color-neutral-500: #71717a;
+  --color-neutral-600: #52525b;
+  --color-neutral-700: #3f3f46;
+  --color-neutral-800: #27272a;
+  --color-neutral-900: #18181b;
+  --color-neutral-950: #0c0c0f;  /* تیره‌ترین (فرضی) */
+}
+
+/* ----- دارک مود (کلاس dark روی html یا body) ----- */
+.dark {
+  /* در دارک مود، معمولاً بنفش‌ها را روشن‌تر می‌کنیم و neutrals را تیره */
+  --color-purple-50:  #f0e6ff;
+  --color-purple-100: #e0ccff;
+  --color-purple-200: #d1b3ff;
+  --color-purple-300: #c299ff;
+  --color-purple-400: #b380ff;
+  --color-purple-500: #a366ff;   /* روشن‌تر از لایت */
+  --color-purple-600: #8c4dff;
+  --color-purple-700: #7533ff;
+  --color-purple-800: #5e1aff;
+  --color-purple-900: #4700e6;
+  --color-purple-950: #2e0099;
+
+  --color-neutral-50:  #1a1a1c;
+  --color-neutral-100: #222224;
+  --color-neutral-200: #2a2a2e;
+  --color-neutral-300: #35353a;
+  --color-neutral-400: #4a4a52;
+  --color-neutral-500: #6b6b75;
+  --color-neutral-600: #95959f;
+  --color-neutral-700: #b5b5bf;
+  --color-neutral-800: #d4d4df;
+  --color-neutral-900: #ebebf0;
+  --color-neutral-950: #f5f5fa;
+}
+
+/* ----- تعریف تم اصلی Tailwind با استفاده از متغیرها ----- */
+@theme {
+  /* بنفش */
+  --color-purple-50:  var(--color-purple-50);
+  --color-purple-100: var(--color-purple-100);
+  --color-purple-200: var(--color-purple-200);
+  --color-purple-300: var(--color-purple-300);
+  --color-purple-400: var(--color-purple-400);
+  --color-purple-500: var(--color-purple-500);
+  --color-purple-600: var(--color-purple-600);
+  --color-purple-700: var(--color-purple-700);
+  --color-purple-800: var(--color-purple-800);
+  --color-purple-900: var(--color-purple-900);
+  --color-purple-950: var(--color-purple-950);
+
+  /* neutral */
+  --color-neutral-50:  var(--color-neutral-50);
+  --color-neutral-100: var(--color-neutral-100);
+  --color-neutral-200: var(--color-neutral-200);
+  --color-neutral-300: var(--color-neutral-300);
+  --color-neutral-400: var(--color-neutral-400);
+  --color-neutral-500: var(--color-neutral-500);
+  --color-neutral-600: var(--color-neutral-600);
+  --color-neutral-700: var(--color-neutral-700);
+  --color-neutral-800: var(--color-neutral-800);
+  --color-neutral-900: var(--color-neutral-900);
+  --color-neutral-950: var(--color-neutral-950);
+}
