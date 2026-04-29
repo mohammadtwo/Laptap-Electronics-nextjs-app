@@ -31,6 +31,7 @@ export default function Navbar() {
                 className="h-full w-auto"
                 src="/assets/svg/ring.svg"
                 alt="زنگ"
+                loading="eager"
               />
             </span>
           </li>

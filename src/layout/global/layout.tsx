@@ -11,17 +11,18 @@ export default function GlobalLayout({
 }) {
   return (
     <ThemeProvider>
-      <header className="h-[10vh]">
+      <div className="sm:h-56 h-45" />
+      <header className="fixed  w-full top-0 right-0 left-0 z-50">
         <Haeder />
         <Navbar />
       </header>
-      <div className="h-[80vh] overflow-scroll">
 
       {children}
-      </div>
-      <footer className=" h-[10vh]">
+
+      <footer className="fixed  w-full bottom-0 right-0 left-0 z-50">
         <Footer />
       </footer>
+      <div className="h-20" />
     </ThemeProvider>
   );
 }

@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl" >
-      <body className="h-full  flex flex-col font-[Vazirmatn] ">
+      <body className="h-screen w-full flex flex-col font-[Vazirmatn] ">
         <ReduxProvider>
           <GlobalLayout>{children}</GlobalLayout>
         </ReduxProvider>
