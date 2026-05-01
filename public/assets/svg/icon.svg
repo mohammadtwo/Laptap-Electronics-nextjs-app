@@ -1,0 +1,25 @@
+<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#853cff"/>
+      <stop offset="100%" stop-color="#ae7dff"/>
+    </linearGradient>
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#853cff" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#ae7dff" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <!-- صفحه نمایش (ابعاد و موقعیت متناسب با 40x40) -->
+  <rect x="5" y="6" width="30" height="18" rx="2" fill="url(#screenGrad)" stroke="url(#purpleGrad)" stroke-width="2"/>
+  
+  <!-- دوربین -->
+  <circle cx="20" cy="8.5" r="1.2" fill="#853cff"/>
+  
+  <!-- لولا -->
+  <line x1="7" y1="24" x2="33" y2="24" stroke="#ae7dff" stroke-width="1.5" stroke-linecap="round"/>
+  
+  <!-- کیبورد -->
+  <line x1="9" y1="27" x2="31" y2="27" stroke="#ae7dff" stroke-width="1" opacity="0.6"/>
+  <line x1="11" y1="29.5" x2="29" y2="29.5" stroke="#ae7dff" stroke-width="1" opacity="0.4"/>
+</svg>
