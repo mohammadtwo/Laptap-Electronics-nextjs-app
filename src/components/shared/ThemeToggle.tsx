@@ -1,12 +1,10 @@
 "use client";
 import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "@/redux/store/root-redux";
-import { toggleTheme } from "@/redux/store/slices/theme-slice/themeSlice";
+import type { RootState } from "@/lib/store/root-redux";
+import { toggleTheme } from "@/lib/store/slices/theme-slice/themeSlice";
 
-function ThemeToggle({className}:{className?:string}) {
-  const theme=useSelector((state:RootState)=>state.theme.value)
-
-
+function ThemeToggle({ className }: { className?: string }) {
+  const theme = useSelector((state: RootState) => state.theme.value);
 
   const dispatch = useDispatch();
 

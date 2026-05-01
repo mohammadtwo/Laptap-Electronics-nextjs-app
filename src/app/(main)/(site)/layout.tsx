@@ -1,5 +1,5 @@
-import GlobalLayout from "@/layout/global/layout";
-import ReduxProvider from "@/layout/global/redux-provider/redux-provider";
+import GlobalLayout from "@/layout/main/global/index";
+import ReduxProvider from "@/layout/main/global/redux-provider/redux-provider";
 import "@/styles/style/globals.css";
 import type { Metadata, Viewport } from "next";
 

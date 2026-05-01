@@ -1,5 +1,5 @@
-"use client"
-import { RootState } from "@/redux/store/root-redux";
+"use client";
+import { RootState } from "@/lib/store/root-redux";
 import { useSelector } from "react-redux";
 import { ReactNode } from "react";
 

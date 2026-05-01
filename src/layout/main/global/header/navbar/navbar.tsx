@@ -11,13 +11,13 @@ export default function Navbar() {
       >
         <ul className="flex gap-4 w-full ">
           <li className="w-[85%] sm:w-[65%]  h-full">
-            <div className="flex h-10 sm:h-15  justify-between px-2 pr-10 py-1 rounded-full bg-purple-100 border-3 border-purple-500  items-center text-neutral-500">
+            <div className="flex h-10 sm:h-12 w-70 mr-auto ml-60  justify-between px-2 pr-10 py-1 rounded-full bg-purple-100 border-3 border-purple-500  items-center text-neutral-500">
               <span>جست و جو</span>
               <span>
                 <Image
                   alt="جستوجو"
-                  width={35}
-                  height={20}
+                  width={30}
+                  height={15}
                   src="/assets/svg/search.svg"
                 />
               </span>
