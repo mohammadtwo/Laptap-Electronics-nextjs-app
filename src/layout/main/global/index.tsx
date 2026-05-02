@@ -11,7 +11,7 @@ export default function GlobalLayout({
 }) {
   return (
     <ThemeProvider>
-      <div className="sm:h-56 h-45" />
+      <div className="sm:h-36 h-28" />
       <header className="fixed  w-full top-0 right-0 left-0 z-50">
         <Haeder />
         <Navbar />

@@ -1,11 +1,10 @@
-import ThemeToggle from "@/components/shared/ThemeToggle";
 import Image from "next/image";
 
 export default function Haeder() {
   // const 
    return (
      <>
-       <div className="flex flex-row-reverse   gap-10 w-full sm:h-18 h-15 bg-linear-to-l  via-purple-50 to-purple-100">
+       <div className="flex flex-row-reverse   gap-10 w-full sm:h-18 h-15 bg-linear-to-r from-purple-50 via-purple-50 to-purple-100 ">
          <div
            className="my-auto text-start whitespace-nowrap flex-1 ml-2 
           text-ms text-shadow-neutral-50 text-shadow-2xs
@@ -26,19 +25,6 @@ export default function Haeder() {
              />
            </div>
          </div>
-       </div>
-       <div
-         className=" flex
-        flex-row-reverse
-        gap-10
-        w-full
-        sm:h-18
-        h-15
-        bg-linear-to-r
-        via-purple-50
-        to-purple-100"
-       >
-         <ThemeToggle className="mx-10" />
        </div>
      </>
    );
