@@ -12,10 +12,10 @@ function ThemeToggle({ className }: { className?: string }) {
     <div className={`flex gap-2 w-fit items-center ${className}`}>
       <button
         onClick={() => dispatch(toggleTheme())}
-        className="w-15 h-8   rounded-2xl   relative  inset-shadow-white   cursor-pointer bg-black dark:bg-blue-400"
+        className="sm:w-15 sm:h-8 w-6 h-6  rounded-2xl   relative  inset-shadow-white   cursor-pointer bg-black dark:bg-blue-400"
       >
         <div
-          className={`h-7 w-7  rounded-full flex justify-center items-center   absolute -translate-y-1/2 top-1/2 shadow-2xl  bg-white dark:bg-white duration-500 transition-colors ${theme === "dark" ? "toggelButtenDark text-yellow-400" : "toggelButten"}`}
+          className={`sm:h-7 sm:w-7 w-6 h-6  rounded-full transition-transform! duration-700 ease-out! flex justify-center items-center   absolute -translate-y-1/2 top-1/2 shadow-2xl  bg-white dark:bg-white   ${theme === "dark" ? "sm:-translate-x-[calc(100%-1px)]" : "sm:-translate-x-1"}  `}
         >
           {theme === "dark" ? "☼" : "☽"}
         </div>
