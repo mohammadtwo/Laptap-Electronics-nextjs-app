@@ -1,17 +1,17 @@
 "use client";
-import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "@/lib/store/root-redux";
-import { toggleTheme } from "@/lib/store/slices/theme-slice/themeSlice";
+
+import { useThemeStore } from "@/lib/store/theme-slice";
+
 
 function ThemeToggle({ className }: { className?: string }) {
-  const theme = useSelector((state: RootState) => state.theme.value);
+ 
+const { theme, toggleTheme } = useThemeStore();
 
-  const dispatch = useDispatch();
 
   return (
     <div className={`flex gap-2 w-fit items-center ${className}`}>
       <button
-        onClick={() => dispatch(toggleTheme())}
+        onClick={() => toggleTheme()}
         className="sm:w-15 sm:h-8 w-6 h-6  rounded-2xl   relative  inset-shadow-white   cursor-pointer bg-black dark:bg-blue-400"
       >
         <div
