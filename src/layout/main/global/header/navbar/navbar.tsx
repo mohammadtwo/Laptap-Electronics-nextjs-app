@@ -89,7 +89,7 @@ export default function Navbar() {
               height={20}
               src={"/assets/svg/add-user.svg"}
               alt="ورود"
-              className=""
+              className="h-auto"
             />
           </button>
         </div>

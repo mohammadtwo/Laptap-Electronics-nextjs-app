@@ -24,9 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl">
-      <body className="w-full flex flex-col font-[Vazirmatn] bg-neutral-50 text-neutral-800">
-
+    <html lang="fa" dir="rtl" suppressHydrationWarning>
+      <body className="light w-full flex flex-col font-[Vazirmatn] bg-neutral-50 text-neutral-800">
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

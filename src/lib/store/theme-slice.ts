@@ -1,36 +1,33 @@
-// stores/themeStore.ts
+// lib/store/theme-slice.ts
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 type Theme = "light" | "dark";
 
 interface ThemeState {
   theme: Theme;
+  _hasHydrated: boolean;
+  setHasHydrated: (state: boolean) => void;
   toggleTheme: () => void;
-  setTheme: (theme: Theme) => void;
 }
 
 export const useThemeStore = create<ThemeState>()(
   persist(
     (set) => ({
-      theme: "light",
+      theme: "light", // Default theme
+      _hasHydrated: false,
+      setHasHydrated: (state) => set({ _hasHydrated: state }),
       toggleTheme: () =>
         set((state) => ({
           theme: state.theme === "light" ? "dark" : "light",
         })),
-      setTheme: (newTheme) => set({ theme: newTheme }),
     }),
     {
-      name: "theme-storage",
-      // اختیاری: برای اطمینان از ذخیره‌سازی صحیح
-      storage: {
-        getItem: (name) => {
-          const str = localStorage.getItem(name);
-          return str ? JSON.parse(str) : null;
-        },
-        setItem: (name, value) =>
-          localStorage.setItem(name, JSON.stringify(value)),
-        removeItem: (name) => localStorage.removeItem(name),
+      name: "theme-storage", // نام برای localStorage
+      storage: createJSONStorage(() => localStorage), // استفاده از localStorage استاندارد
+      onRehydrateStorage: () => (state) => {
+        // وقتی داده از localStorage لود شد، وضعیت hydration را فعال کن
+        state?.setHasHydrated(true);
       },
     },
   ),
