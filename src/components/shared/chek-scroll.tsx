@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 
 interface ScrollToggleProps {
   children: React.ReactNode;
-  threshold?: number; // مقدار آستانه بر حسب پیکسل (پیش‌فرض 60)
+  threshold?: number; 
 }
 
 export default function ScrollToggle({

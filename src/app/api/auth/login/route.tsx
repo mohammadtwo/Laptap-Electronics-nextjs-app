@@ -23,15 +23,13 @@ type BackendLoginRes = {
 
 export async function POST(req: NextRequest) {
   try {
-    const body: LoginReq = await req.json();
-    const backendRes = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      },
-    );
+    const data = await req.json(); 
+   
+    const backendRes = await fetch(`${process.env.API_URL}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
 
     const res: BackendLoginRes = await backendRes.json();
 
@@ -53,7 +51,7 @@ export async function POST(req: NextRequest) {
       .setExpirationTime("7d") // هماهنگ با maxAge کوکی
       .sign(localSecret);
 
-    // پاسخ نهایی
+   
     const response = NextResponse.json(
       {
         success: true,
@@ -62,7 +60,6 @@ export async function POST(req: NextRequest) {
       { status: 200 },
     );
 
-    // ذخیره توکن اصلی (برای ارسال به بک‌اند)
     response.cookies.set("token", res.data.token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
@@ -71,7 +68,6 @@ export async function POST(req: NextRequest) {
       path: "/",
     });
 
-    // ذخیره refreshToken اصلی
     response.cookies.set("refreshToken", res.data.refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
@@ -80,7 +76,6 @@ export async function POST(req: NextRequest) {
       path: "/",
     });
 
-    // ذخیره توکن محلی (برای خواندن در middleware)
     response.cookies.set("localToken", localToken, {
       httpOnly: true, // امن‌تر است، چون در کلاینت نیازی نیست
       secure: process.env.NODE_ENV === "production",

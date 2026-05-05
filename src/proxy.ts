@@ -14,7 +14,6 @@ export async function proxy(req: NextRequest) {
     "/api/auth/login",
     
   ];
-  // مسیرهایی که نباید در middleware بررسی شوند (جلوگیری از لوپ)
   if (publicRoute.some(route=>path.startsWith(route))) {
     return NextResponse.next();
   }
@@ -30,7 +29,6 @@ export async function proxy(req: NextRequest) {
   const cookieStore = await cookies();
   const localToken = cookieStore.get("localToken")?.value;
 
-  // اگر مسیر محافظت شده است ولی توکن محلی وجود ندارد
   if (isProtected && !localToken) {
     return redirectToLogin(isAdminRoute, req.url);
   }
@@ -47,28 +45,21 @@ export async function proxy(req: NextRequest) {
       if (isUserRoute && role !== "user") {
         return NextResponse.redirect(new URL("/auth", req.url));
       }
-      // توکن محلی معتبر است → اجازه دسترسی
       return NextResponse.next();
     } catch (error) {
-      // توکن محلی نامعتبر (منقضی یا دستکاری شده)
       console.error("Local token invalid:", error);
-      // تلاش برای رفرش (فراخوانی endpoint رفرش خودمان)
       const refreshResult = await tryRefreshToken(req);
       if (refreshResult.success) {
-        // رفرش موفق شد، درخواست را دوباره ارسال کن (با ریدایرکت به همان صفحه)
         return NextResponse.redirect(req.url);
       } else {
-        // رفرش ناموفق → لاگین
         return redirectToLogin(isAdminRoute, req.url);
       }
     }
   }
 
-  // اگر مسیر محافظت نشده باشد
   return NextResponse.next();
 }
 
-// تابع کمکی برای تلاش رفرش توکن
 async function tryRefreshToken(
   req: NextRequest,
 ): Promise<{ success: boolean }> {
@@ -86,6 +77,7 @@ async function tryRefreshToken(
       },
     );
     return { success: refreshRes.ok };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     return { success: false };
   }
@@ -95,7 +87,6 @@ function redirectToLogin(isAdminRoute: boolean, currentUrl: string | URL) {
   const response = NextResponse.redirect(
     new URL(isAdminRoute ? "/admin/auth" : "/auth", currentUrl),
   );
-  // پاک کردن کوکی‌های معتبر
   response.cookies.delete("token");
   response.cookies.delete("refreshToken");
   response.cookies.delete("localToken");

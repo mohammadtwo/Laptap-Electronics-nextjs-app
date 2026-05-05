@@ -1,12 +1,19 @@
 "use client";
 import ScrollToggle from "@/components/shared/chek-scroll";
-import ThemeToggle from "@/components/shared/ThemeToggle";
+
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
+const ThemeToggle = dynamic(() => import("@/components/shared/ThemeToggle"), {
+  ssr: false,
+});
 
 export default function Navbar() {
 
   return (
     <ScrollToggle>
+  
+     
       <header
         className="w-full absolute left-0 right-0 top-full  bg-linear-to-r from-purple-50 via-purple-50 to-purple-100 
                  shadow-md rounded-b-2xl py-2 px-4 sm:px-6 
@@ -94,6 +101,7 @@ export default function Navbar() {
           </button>
         </div>
       </header>
-    </ScrollToggle>
+      </ScrollToggle>
+    
   );
 }
