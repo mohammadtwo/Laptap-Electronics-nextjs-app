@@ -5,16 +5,15 @@ import { cookies } from "next/headers";
 const protectedAdminRoutes = ["/admin", "/admin/profile"];
 const protectedUserRoutes = ["/profile", "/cart", "/checkout"];
 
-export async function proxy(req: NextRequest) {
+export default async function proxy(req: NextRequest) {
   const path = req.nextUrl.pathname;
   const publicRoute = [
     "/admin/auth",
     "/auth",
     "/api/auth/refresh",
     "/api/auth/login",
-    
   ];
-  if (publicRoute.some(route=>path.startsWith(route))) {
+  if (publicRoute.some((route) => path.startsWith(route))) {
     return NextResponse.next();
   }
 
@@ -35,6 +34,7 @@ export async function proxy(req: NextRequest) {
 
   if (localToken) {
     try {
+
       const secret = new TextEncoder().encode(process.env.LOCAL_JWT_SECRET);
       const { payload } = await jwtVerify(localToken, secret);
       const role = payload.role as string;
@@ -46,41 +46,14 @@ export async function proxy(req: NextRequest) {
         return NextResponse.redirect(new URL("/auth", req.url));
       }
       return NextResponse.next();
+
     } catch (error) {
       console.error("Local token invalid:", error);
-      const refreshResult = await tryRefreshToken(req);
-      if (refreshResult.success) {
-        return NextResponse.redirect(req.url);
-      } else {
-        return redirectToLogin(isAdminRoute, req.url);
-      }
+      return redirectToLogin(isAdminRoute, req.url);
     }
   }
 
   return NextResponse.next();
-}
-
-async function tryRefreshToken(
-  req: NextRequest,
-): Promise<{ success: boolean }> {
-  try {
-    const cookieStore = await cookies();
-    const refreshToken = cookieStore.get("refreshToken")?.value;
-    if (!refreshToken) return { success: false };
-
-    const refreshRes = await fetch(
-      new URL("/api/auth/refresh", req.url).toString(),
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ refreshToken }),
-      },
-    );
-    return { success: refreshRes.ok };
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (error) {
-    return { success: false };
-  }
 }
 
 function redirectToLogin(isAdminRoute: boolean, currentUrl: string | URL) {

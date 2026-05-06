@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { usePathname } from "next/navigation";
 
 interface ScrollToggleProps {
   children: React.ReactNode;
-  threshold?: number; 
+  threshold?: number;
 }
 
 export default function ScrollToggle({
@@ -13,7 +14,16 @@ export default function ScrollToggle({
 }: ScrollToggleProps) {
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
+  const pathname = usePathname(); // برای تشخیص تغییر مسیر
 
+  // ریست وضعیت هنگام تغییر مسیر
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsVisible(true);
+    lastScrollY.current = window.scrollY;
+  }, [pathname]);
+
+  // هندل اسکرول
   useEffect(() => {
     let ticking = false;
 
@@ -43,7 +53,7 @@ export default function ScrollToggle({
 
   return (
     <div
-      className={`absolute transition-transform!  right-0 left-0  duration-800! ease-in-out ${
+      className={`absolute right-0 left-0 transition-all duration-800 ease-in-out ${
         isVisible ? "top-full opacity-100 visible" : "top-0 opacity-0 invisible"
       }`}
     >

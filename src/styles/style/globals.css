@@ -2,6 +2,8 @@
 
 /* src/styles/theme.css */
 @import "tailwindcss";
+
+@tailwind utilities;
 @import "swiper/css";
 @import "swiper/css/pagination";
 @font-face {

@@ -25,14 +25,14 @@ export async function POST(req: NextRequest) {
   try {
     const data = await req.json(); 
    
-    const backendRes = await fetch(`${process.env.API_URL}/api/auth/login`, {
+    const backendRes = await fetch(`${process.env.API_URL}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
 
     const res: BackendLoginRes = await backendRes.json();
-
+  
     if (!backendRes.ok || !res.success || !res.data?.token) {
       return NextResponse.json(
         { success: false, message: res.message || "خطا در ورود" },
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
     };
     const localToken = await new SignJWT(localPayload)
       .setProtectedHeader({ alg: "HS256" })
-      .setExpirationTime("7d") // هماهنگ با maxAge کوکی
+      .setExpirationTime(Number(process.env.JWT_EXPIRE_LOCAL_TOKEN)) // هماهنگ با maxAge کوکی
       .sign(localSecret);
 
    
@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge: Number(process.env.JWT_EXPIRE_ACCESS_TOKEN),
       path: "/",
     });
 
@@ -72,24 +72,26 @@ export async function POST(req: NextRequest) {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 30,
+      maxAge: Number(process.env.JWT_EXPIRE_REFRESH_TOKEN),
       path: "/",
     });
+    // * 60 * 24 * 7
 
     response.cookies.set("localToken", localToken, {
       httpOnly: true, // امن‌تر است، چون در کلاینت نیازی نیست
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge: Number(process.env.JWT_EXPIRE_LOCAL_TOKEN),
       path: "/",
     });
 
     // (اختیاری) نقش را جداگانه با httpOnly: false هم می‌توان ذخیره کرد، ولی اکنون از localToken می‌خوانیم
+  
     response.cookies.set("role", res.data.user.role, {
       httpOnly: false,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge: Number(process.env.JWT_EXPIRE_LOCAL_TOKEN),
       path: "/",
     });
 

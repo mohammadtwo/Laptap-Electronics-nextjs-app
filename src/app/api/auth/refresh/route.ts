@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
     const localPayload = { userId: user._id, role: user.role };
     const localToken = await new SignJWT(localPayload)
       .setProtectedHeader({ alg: "HS256" })
-      .setExpirationTime("7d")
+      .setExpirationTime(Number(process.env.JWT_EXPIRE_LOCAL_TOKEN))
       .sign(localSecret);
 
     const response = NextResponse.json({ success: true });
@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge: Number(process.env.JWT_EXPIRE_ACCESS_TOKEN),
       path: "/",
     });
 
@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "lax",
-        maxAge: 60 * 60 * 24 * 30,
+        maxAge: Number(process.env.JWT_EXPIRE_REFRESH_TOKEN),
         path: "/",
       });
     }
@@ -87,7 +87,7 @@ export async function POST(req: NextRequest) {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge: Number(process.env.JWT_EXPIRE_LOCAL_TOKEN),
       path: "/",
     });
 
@@ -95,7 +95,7 @@ export async function POST(req: NextRequest) {
       httpOnly: false,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge: Number(process.env.JWT_EXPIRE_LOCAL_TOKEN),
       path: "/",
     });
 

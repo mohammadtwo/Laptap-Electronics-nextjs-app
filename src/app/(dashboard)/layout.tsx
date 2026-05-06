@@ -5,5 +5,5 @@ export default function DashboardGroupLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children};</>;
+  return <>{children}</>;
 }

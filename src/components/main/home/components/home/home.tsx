@@ -1,10 +1,12 @@
 // import { Slider } from "../slider/slider";
 
+import { Slider } from "../slider/slider";
+
 
 export default function Home() {
   return (
     <>
-      {/* <Slider/> */}
+      <Slider/>
       <main className=" flex-1">
         <div className="h-250 "></div>
       </main>

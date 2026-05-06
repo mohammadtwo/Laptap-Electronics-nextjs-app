@@ -19,11 +19,12 @@ export default function Login() {
   } = useForm<LoginForm>();
   const onSubmit = async (data: LoginForm) => {
     await HandelSubmitForm(data).then((res)=> {
-      if(res)router.push('/admin')}
+   
+      if(res){router.push('/admin')}}
     )
   };
 
-;
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-neutral-100 p-4">
      
