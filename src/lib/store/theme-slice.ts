@@ -1,0 +1,26 @@
+// lib/store/theme-slice.ts
+import { create } from "zustand";
+
+type Theme = "light" | "dark";
+
+interface ThemeState {
+  theme: Theme;
+  toggleTheme: () => void;
+}
+
+import { persist } from "zustand/middleware";
+
+export const useThemeStore = create<ThemeState>()(
+  persist(
+    (set) => ({
+      theme: "dark",
+      toggleTheme: () =>
+        set((state) => ({
+          theme: state.theme === "light" ? "dark" : "light",
+        })),
+    }),
+    {
+      name: "theme-storage",
+    },
+  ),
+);
