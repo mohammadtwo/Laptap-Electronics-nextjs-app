@@ -1,3 +1,5 @@
+import ProductsTable from "@/components/admin/products/components/products-admin";
+
 export default function page() {
-    return <div>kkkkkkkkkkkkkkkkkkkkkk</div>
-};
+    return <ProductsTable/>
+}

@@ -1,5 +1,5 @@
-import ProductTable from "@/components/admin/dashbord/components/tabel";
+import Dashoard from "@/components/admin/dashbord/components/dashoard";
 
 export default function page() {
-    return <ProductTable/>;
+    return <Dashoard/> ;
 };
