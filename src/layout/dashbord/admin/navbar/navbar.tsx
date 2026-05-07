@@ -55,8 +55,8 @@ const UserIcon = () => (
 
 // لینک‌های ناوبری (بدون مشتریان و تنظیمات)
 const navLinks = [
-  { name: "داشبورد", href: "/admin/dashboard" },
-  { name: "محصولات", href: "/admin/products" },
+  { name: "مجصولات", href: "/admin/products" },
+  { name: "موجودی", href: "/admin/inventory" },
   { name: "سفارشات", href: "/admin/orders" },
 ];
 
@@ -71,10 +71,7 @@ export default function AdminNavbar() {
         <div className="flex justify-between h-16">
           {/* لوگو و برند */}
           <div className="flex items-center">
-            <Link
-              href="/admin/dashboard"
-              className="shrink-0 flex items-center gap-2"
-            >
+            <Link href="/admin" className="shrink-0 flex items-center gap-2">
               <div className="w-25 h-10 relative">
                 <Image
                   src="/assets/svg/nav-logo.svg"

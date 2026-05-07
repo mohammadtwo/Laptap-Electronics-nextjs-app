@@ -23,7 +23,7 @@ type BackendLoginRes = {
 
 export async function POST(req: NextRequest) {
   try {
-    const data = await req.json(); 
+    const data:LoginReq = await req.json(); 
    
     const backendRes = await fetch(`${process.env.API_URL}/auth/login`, {
       method: "POST",

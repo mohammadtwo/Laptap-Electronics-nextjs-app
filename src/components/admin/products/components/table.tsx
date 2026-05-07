@@ -194,8 +194,8 @@ const handleSave = useCallback(async () => {
               className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-sm text-neutral-700 outline-none transition focus:border-purple-500"
             >
               <option value="">همه دسته‌ها</option>
-              <option value="الکترونیک">لب تاپ</option>
-              <option value="مک بوک">مک بوک</option>
+              <option value="Laptop">لپ تاپ</option>
+              <option value="MacBook">مک بوک</option>
               <option value="هدفون">هدفون</option>
             </select>
           </div>
