@@ -1,3 +1,5 @@
+// import { Slider } from "../slider/slider";
+
 import { Slider } from "../slider/slider";
 
 

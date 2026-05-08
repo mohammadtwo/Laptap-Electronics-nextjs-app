@@ -1,23 +1,47 @@
 "use client";
-import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "@/lib/store/root-redux";
-import { toggleTheme } from "@/lib/store/slices/theme-slice/themeSlice";
+
+import clsx from "clsx";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 function ThemeToggle({ className }: { className?: string }) {
-  const theme = useSelector((state: RootState) => state.theme.value);
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
+
+  // جلوگیری از ناسازگاری Hydration با mount نشدن اولیه
+  if (!mounted) {
+    return (
+      <div className={clsx("flex gap-2 w-fit items-center", className)}>
+        <button className="sm:w-15 sm:h-8 w-6 h-6 rounded-2xl relative inset-shadow-white cursor-pointer bg-black dark:bg-blue-400">
+          <div className="sm:h-7 sm:w-7 w-6 h-6 rounded-full transition-transform! duration-700 ease-out! flex justify-center items-center absolute -translate-y-1/2 top-1/2 shadow-2xl bg-white dark:bg-white" />
+        </button>
+      </div>
+    );
+  }
 
   return (
-    <div className={`flex gap-2 w-fit items-center ${className}`}>
+    <div className={clsx("flex gap-2 w-fit items-center", className)}>
       <button
-        onClick={() => dispatch(toggleTheme())}
-        className="w-15 h-8   rounded-2xl   relative  inset-shadow-white   cursor-pointer bg-black dark:bg-blue-400"
+        type="button"
+        onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+        className="sm:w-15 sm:h-8 w-6 h-6 rounded-2xl relative inset-shadow-white cursor-pointer bg-black dark:bg-blue-400"
       >
         <div
-          className={`h-7 w-7  rounded-full flex justify-center items-center   absolute -translate-y-1/2 top-1/2 shadow-2xl  bg-white dark:bg-white duration-500 transition-colors ${theme === "dark" ? "toggelButtenDark text-yellow-400" : "toggelButten"}`}
+          className={clsx(
+            "sm:h-7 sm:w-7 w-6 h-6 rounded-full transition-transform! duration-700 ease-out! flex justify-center items-center absolute -translate-y-1/2 top-1/2 shadow-2xl bg-white dark:bg-white",
+            {
+              "sm:-translate-x-[calc(100%-1px)] text-yellow-400":
+                resolvedTheme === "dark",
+              "sm:-translate-x-1": resolvedTheme !== "dark",
+            },
+          )}
         >
-          {theme === "dark" ? "☼" : "☽"}
+          {resolvedTheme === "dark" ? "☼" : "☽"}
         </div>
       </button>
     </div>
