@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
-// آیکون‌های ساده (می‌توانید از lucide-react یا heroicons استفاده کنید)
+// آیکون‌های ساده
 const MenuIcon = () => (
   <svg
     className="w-6 h-6"
@@ -53,12 +53,11 @@ const UserIcon = () => (
   </svg>
 );
 
+// لینک‌های ناوبری (بدون مشتریان و تنظیمات)
 const navLinks = [
-  { name: "داشبورد", href: "/admin/dashboard" },
-  { name: "محصولات", href: "/admin/products" },
+  { name: "مجصولات", href: "/admin/products" },
+  { name: "موجودی", href: "/admin/inventory" },
   { name: "سفارشات", href: "/admin/orders" },
-  { name: "مشتریان", href: "/admin/customers" },
-  { name: "تنظیمات", href: "/admin/settings" },
 ];
 
 export default function AdminNavbar() {
@@ -67,20 +66,17 @@ export default function AdminNavbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="bg-neutral-900 border-b border-purple-500/20 shadow-lg sticky top-0 z-50">
+    <nav className="bg-neutral-800 border-b border-purple-500/20 shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* لوگو و برند */}
           <div className="flex items-center">
-            <Link
-              href="/admin/dashboard"
-              className="shrink-0 flex items-center gap-2"
-            >
+            <Link href="/admin" className="shrink-0 flex items-center gap-2">
               <div className="w-25 h-10 relative">
                 <Image
-                  src="/assets/svg/nav-logo.svg" // یا import شده
+                  src="/assets/svg/nav-logo.svg"
                   fill
-                  className="object-contain scale-125" // یا object-cover
+                  className="object-contain scale-125"
                   alt="logo"
                 />
               </div>
@@ -90,7 +86,7 @@ export default function AdminNavbar() {
             </Link>
           </div>
 
-          {/* لینک‌های دسکتاپ (وسط) */}
+          {/* لینک‌های دسکتاپ */}
           <div className="hidden md:flex items-center space-x-1 rtl:space-x-reverse">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -111,25 +107,8 @@ export default function AdminNavbar() {
             })}
           </div>
 
-          {/* بخش سمت راست: اعلان و پروفایل */}
+          {/* بخش سمت راست: فقط منوی کاربر (بدون زنگوله) */}
           <div className="flex items-center gap-3">
-            {/* دکمه اعلان (نماد) */}
-            <button className="p-2 rounded-full text-neutral-300 hover:text-purple-400 hover:bg-neutral-800 transition">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                />
-              </svg>
-            </button>
-
             {/* منوی کاربر */}
             <div className="relative">
               <button
@@ -165,12 +144,6 @@ export default function AdminNavbar() {
                   >
                     پروفایل
                   </Link>
-                  <Link
-                    href="/admin/settings"
-                    className="block px-4 py-2 text-sm text-neutral-300 hover:bg-neutral-700 hover:text-purple-400"
-                  >
-                    تنظیمات
-                  </Link>
                   <hr className="my-1 border-neutral-700" />
                   <button className="w-full text-right block px-4 py-2 text-sm text-red-400 hover:bg-neutral-700">
                     خروج
@@ -204,11 +177,7 @@ export default function AdminNavbar() {
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`block px-3 py-2 rounded-md text-base font-medium transition
-                    ${
-                      isActive
-                        ? "bg-purple-600 text-white"
-                        : "text-neutral-300 hover:bg-neutral-800 hover:text-purple-400"
-                    }`}
+                    ${isActive ? "bg-purple-600 text-white" : "text-neutral-300 hover:bg-neutral-800 hover:text-purple-400"}`}
                 >
                   {link.name}
                 </Link>
