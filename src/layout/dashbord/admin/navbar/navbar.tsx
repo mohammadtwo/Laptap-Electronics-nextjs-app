@@ -55,9 +55,10 @@ const UserIcon = () => (
 
 // لینک‌های ناوبری (بدون مشتریان و تنظیمات)
 const navLinks = [
-  { name: "مجصولات", href: "/admin/products" },
+  { name: "محصولات", href: "/admin/products" },
   { name: "موجودی", href: "/admin/inventory" },
   { name: "سفارشات", href: "/admin/orders" },
+  { name: "خانه", href: "/" },
 ];
 
 export default function AdminNavbar() {

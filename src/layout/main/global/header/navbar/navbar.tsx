@@ -1,107 +1,199 @@
 "use client";
-import ScrollToggle from "@/components/shared/chek-scroll";
 
-import Image from "next/image";
-import dynamic from "next/dynamic";
-
-const ThemeToggle = dynamic(() => import("@/components/shared/ThemeToggle"), {
-  ssr: false,
-});
+import { useState } from "react";
+import Link from "next/link";
+import { Menu, X, ShoppingCart, Search } from "lucide-react";
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const cartCount = 0;
 
   return (
-    <ScrollToggle>
-  
-     
-      <header
-        className="w-full absolute left-0 right-0 top-full  bg-linear-to-r from-purple-50 via-purple-50 to-purple-100 
-                 shadow-md rounded-b-2xl py-2 px-4 sm:px-6 
-                 flex  items-center justify-between gap-3"
-      >
-        {/* بخش راست (شامل سرچ، زنگ و سبد خرید) - در RTL سمت راست نمایش داده می‌شود */}
-        <div className="flex items-center gap-2 sm:gap-4 flex-1 sm:flex-none order-last sm:order-first">
-          {/* سرچ بار با استایل گرد و سایه نرم */}
-          <div
-            className="flex items-center justify-between gap-2 bg-white/70 backdrop-blur-sm 
-                      rounded-full border border-purple-300 shadow-sm 
-                      px-3 py-1.5 sm:py-2 w-full sm:w-72 
-                      focus-within:ring-2 focus-within:ring-purple-400/50 
-                      transition-all duration-200"
-          >
-            <input
-              type="text"
-              placeholder="جست و جو"
-              className="bg-transparent outline-none text-sm text-neutral-700 w-full pr-1"
-            />
-            <Image
-              alt="جستوجو"
-              width={18}
-              height={18}
-              src="/assets/svg/search.svg"
-              className="opacity-70"
-            />
+   
+      <nav className="w-full bg-neutral-900/95 backdrop-blur-md border-b border-neutral-700 text-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="relative flex items-center justify-between h-16">
+            {/* Mobile Hamburger */}
+            <button
+              className="md:hidden flex items-center justify-center text-neutral-200"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="menu"
+            >
+              {menuOpen ? <X size={26} /> : <Menu size={26} />}
+            </button>
+
+            {/* Logo */}
+            <Link
+              href="/"
+              className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 flex items-center gap-3"
+            >
+              {/* SVG Logo */}
+              <div className="flex items-center justify-center w-11 h-11 rounded-xl bg-purple-500/15 border border-purple-500/20">
+                <svg
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  {/* Laptop */}
+                  <rect
+                    x="4"
+                    y="5"
+                    width="16"
+                    height="10"
+                    rx="2"
+                    stroke="#A855F7"
+                    strokeWidth="1.8"
+                  />
+
+                  <path
+                    d="M2 18H22"
+                    stroke="#A855F7"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                  />
+
+                  {/* Electronic Pulse */}
+                  <path
+                    d="M9 10L11 8L13 12L15 10"
+                    stroke="#C084FC"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+
+              {/* Brand */}
+              <div className="flex flex-col leading-tight">
+                <span className="text-sm text-neutral-400 font-medium">
+                  Laptop
+                </span>
+
+                <span className="font-bold text-white tracking-wide">
+                  Electronics
+                </span>
+              </div>
+            </Link>
+
+            {/* Desktop Menu */}
+            <div className="hidden lg:flex items-center gap-8">
+              <Link
+                href="/products"
+                className="text-neutral-300 hover:text-purple-300 transition"
+              >
+                محصولات
+              </Link>
+
+              <Link
+                href="/categories"
+                className="text-neutral-300 hover:text-purple-300 transition"
+              >
+                دسته‌بندی‌ها
+              </Link>
+            </div>
+
+            {/* Search */}
+            <div className="hidden md:flex items-center w-80 bg-neutral-800 border border-neutral-700 rounded-xl px-3 py-2">
+              <Search size={18} className="text-neutral-400" />
+
+              <input
+                type="text"
+                placeholder="جستجوی محصول..."
+                className="w-full bg-transparent outline-none px-2 text-sm placeholder:text-neutral-500"
+              />
+            </div>
+
+            {/* Desktop Right Side */}
+            <div className="hidden md:flex items-center gap-4">
+              <Link
+                href="/login"
+                className="text-neutral-300 hover:text-white transition"
+              >
+                ورود
+              </Link>
+
+              <Link
+                href="/signup"
+                className="bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-xl transition shadow-lg shadow-purple-500/20"
+              >
+                ثبت نام
+              </Link>
+
+              {/* Cart */}
+              <Link
+                href="/cart"
+                className="relative p-2 hover:bg-neutral-800 rounded-xl transition"
+              >
+                <ShoppingCart size={22} className="text-neutral-100" />
+
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-purple-500 text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                    {cartCount}
+                  </span>
+                )}
+              </Link>
+            </div>
+
+            {/* Mobile Empty Space */}
+            <div className="md:hidden w-6"></div>
           </div>
-
-          {/* آیکون زنگ با بک‌گراند دایره و افکت hover */}
-          <button
-            className="relative bg-purple-200/80 hover:bg-purple-300 
-                     transition-all duration-200 rounded-full p-2 sm:p-2.5 
-                     shadow-sm hover:shadow-md"
-          >
-            <Image
-              width={20}
-              height={20}
-              src="/assets/svg/ring.svg"
-              alt="زنگ"
-              className="w-6 h-4 rounded-full sm:w-6 sm:h-6"
-            />
-            {/* یک نقطه اعلان کوچک (اختیاری) */}
-            <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 rounded-full ring-2 ring-white"></span>
-          </button>
-
-          {/* دکمه سبد خرید (آیکونی) */}
-          <button
-            className=" items-center hidden sm:flex gap-1 bg-purple-200/80 hover:bg-purple-300 
-                     transition-all duration-200 rounded-full px-3 py-1.5 sm:px-4 sm:py-2 
-                     shadow-sm hover:shadow-md text-purple-800 font-medium text-sm"
-          >
-            <Image
-              width={20}
-              height={20}
-              src="/assets/svg/bx-cart.svg" // مسیر آیکون سبد خرید خود را قرار دهید
-              alt="سبد خرید"
-              className="w-5 h-5"
-            />
-            <span className="hidden sm:inline">سبد خرید</span>
-          </button>
         </div>
 
-        {/* بخش چپ (شامل تم تاگل و ثبت‌نام) */}
-        <div className="flex items-center gap-1 sm:gap-3">
-          <ThemeToggle className="bg-white/50 rounded-full sm:p-1 p-1  shadow-sm hover:shadow-md transition-all" />
-          <button
-            className="bg-purple-300 hover:bg-purple-400 border border-purple-400 
-                     text-purple-900 font-medium text-sm sm:text-base 
-                     px-3 py-1.5 sm:px-5 sm:py-2 rounded-2xl 
-                     transition-all duration-200 shadow-sm hover:shadow-md 
-                     whitespace-nowrap flex gap-1"
-          >
-            <span className="h-full border-l pl-2 sm:inline hidden">
-              ثبت نام
-            </span>{" "}
-            <span className="pr-2 sm:inline hidden">ورود</span>
-            <Image
-              width={20}
-              height={20}
-              src={"/assets/svg/add-user.svg"}
-              alt="ورود"
-              className="h-auto"
-            />
-          </button>
-        </div>
-      </header>
-      </ScrollToggle>
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="md:hidden border-t border-neutral-700 bg-neutral-900/95 backdrop-blur-md">
+            <div className="flex flex-col items-center text-center gap-4 p-4">
+              {/* Mobile Search */}
+              <div className="w-full flex items-center bg-neutral-800 border border-neutral-700 px-3 py-2 rounded-xl">
+                <Search size={18} className="text-neutral-400" />
+
+                <input
+                  type="text"
+                  placeholder="جستجوی محصول..."
+                  className="w-full bg-transparent outline-none px-2 text-center text-sm placeholder:text-neutral-500"
+                />
+              </div>
+
+              <Link
+                href="/products"
+                className="w-full text-neutral-200 hover:text-purple-300 transition"
+              >
+                محصولات
+              </Link>
+
+              <Link
+                href="/categories"
+                className="w-full text-neutral-200 hover:text-purple-300 transition"
+              >
+                دسته‌بندی‌ها
+              </Link>
+
+              <Link
+                href="/login"
+                className="w-full text-neutral-200 hover:text-purple-300 transition"
+              >
+                ورود
+              </Link>
+
+              <Link
+                href="/signup"
+                className="w-full bg-purple-500 hover:bg-purple-600 py-2 rounded-xl transition"
+              >
+                ثبت نام
+              </Link>
+
+              <Link
+                href="/cart"
+                className="w-full text-neutral-200 hover:text-purple-300 transition"
+              >
+                سبد خرید
+              </Link>
+            </div>
+          </div>
+        )}
+      </nav>
     
   );
 }
