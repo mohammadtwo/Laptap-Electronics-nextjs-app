@@ -236,7 +236,7 @@ function statusBadge(status: OrderStatus) {
                           : "پرداخت در محل"}
                       </td>
 
-                      <td className="px-4 py-3">{statusBadge(order.status)}</td>
+                      <td className="px-4 py-3 text-nowrap w-33.5">{statusBadge(order.status)}</td>
 
                       <td className="px-4 py-3">
                         <select

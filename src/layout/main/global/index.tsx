@@ -1,6 +1,6 @@
 import Footer from "./footer/footer";
+import TopBar from "./header/header/TopBar";
 import Navbar from "./header/navbar/navbar";
-import Haeder from "./header/header/haeder";
 
 
 export default function GlobalLayout({
@@ -10,9 +10,9 @@ export default function GlobalLayout({
 }) {
   return (
     <>
-      <div className="sm:h-36 h-28" />
+      <div className="sm:h-[101.5px] h-16" />
       <header className="fixed  w-full top-0 right-0 left-0 z-50">
-        <Haeder />
+        <TopBar />
         <Navbar />
       </header>
 
@@ -23,6 +23,5 @@ export default function GlobalLayout({
       </footer>
       <div className="h-20" />
     </>
-  
   );
 }

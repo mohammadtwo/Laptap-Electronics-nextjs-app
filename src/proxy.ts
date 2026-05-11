@@ -1,12 +1,10 @@
 import { jwtVerify } from "jose";
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
 
-const protectedAdminRoutes = ["/admin", "/admin/profile"];
-const protectedUserRoutes = ["/profile", "/cart", "/checkout"];
-
-export default async function proxy(req: NextRequest) {
+export  async function proxy(req: NextRequest) {
   const path = req.nextUrl.pathname;
+  const protectedAdminRoutes = ["/admin", "/admin/profile"];
+  const protectedUserRoutes = ["/profile", "/cart", "/checkout"];
   const publicRoute = [
     "/admin/auth",
     "/auth",
@@ -25,8 +23,7 @@ export default async function proxy(req: NextRequest) {
   );
   const isProtected = isAdminRoute || isUserRoute;
 
-  const cookieStore = await cookies();
-  const localToken = cookieStore.get("localToken")?.value;
+  const localToken = req.cookies.get("localToken")?.value;
 
   if (isProtected && !localToken) {
     return redirectToLogin(isAdminRoute, req.url);
@@ -34,7 +31,6 @@ export default async function proxy(req: NextRequest) {
 
   if (localToken) {
     try {
-
       const secret = new TextEncoder().encode(process.env.LOCAL_JWT_SECRET);
       const { payload } = await jwtVerify(localToken, secret);
       const role = payload.role as string;
@@ -46,7 +42,6 @@ export default async function proxy(req: NextRequest) {
         return NextResponse.redirect(new URL("/auth", req.url));
       }
       return NextResponse.next();
-
     } catch (error) {
       console.error("Local token invalid:", error);
       return redirectToLogin(isAdminRoute, req.url);
