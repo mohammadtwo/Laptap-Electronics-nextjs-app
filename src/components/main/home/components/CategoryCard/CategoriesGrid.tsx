@@ -4,24 +4,24 @@ import CategoryCard from "./CategoryCard";
 export default function CategoriesGrid() {
   const items = [
     {
-      title: "لپ‌تاپ‌ گیمینگ",
+      title: "لپ‌تاپ‌ اقتصادی",
       href: "/category/gaming",
-      image: "/images/gaming.jpg",
+      image: "/assets/eqtesadi-2.webp",
     },
     {
       title: "لپ‌تاپ دانشجویی",
       href: "/category/student",
-      image: "/images/student.jpg",
+      image: "/assets/mohandesi.webp",
     },
     {
       title: "لپ‌تاپ برنامه‌نویسی",
       href: "/category/developer",
-      image: "/images/developer.jpg",
+      image: "/assets/programing.jpg",
     },
     {
-      title: "لپ‌تاپ مهندسی",
+      title: "لوازم جانبی",
       href: "/category/engineering",
-      image: "/images/engineering.jpg",
+      image: "/assets/lavazem-janebi.webp",
     },
   ];
 

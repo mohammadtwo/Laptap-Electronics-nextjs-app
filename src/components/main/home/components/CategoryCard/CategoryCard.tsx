@@ -24,7 +24,7 @@ export default function CategoryCard({ title, href, image }: Props) {
       />
 
       {/* لایه تیره گرادیان بنفش */}
-      <div className="absolute inset-0 bg-linear-to-t from-purple-800/70 via-purple-700/40 to-purple-600/10" />
+      <div className="absolute inset-0 bg-linear-to-t from-purple-800/40 via-purple-700/10 to-purple-600/5" />
 
       {/* متن وسط کارت */}
       <div className="absolute inset-0 flex items-end p-4">

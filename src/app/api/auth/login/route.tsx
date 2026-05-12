@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
     };
     const localToken = await new SignJWT(localPayload)
       .setProtectedHeader({ alg: "HS256" })
-      .setExpirationTime(Number(process.env.JWT_EXPIRE_LOCAL_TOKEN)) // هماهنگ با maxAge کوکی
+      .setExpirationTime(process.env.JWT_EXPIRE_LOCAL_TOKEN) // هماهنگ با maxAge کوکی
       .sign(localSecret);
 
    
@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
       httpOnly: true, // امن‌تر است، چون در کلاینت نیازی نیست
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: Number(process.env.JWT_EXPIRE_LOCAL_TOKEN),
+      maxAge: Number(process.env.JWT_EXPIRE_LOCAL_TOKEN_SET),
       path: "/",
     });
 
@@ -91,7 +91,7 @@ export async function POST(req: NextRequest) {
       httpOnly: false,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: Number(process.env.JWT_EXPIRE_LOCAL_TOKEN),
+      maxAge: Number(process.env.JWT_EXPIRE_LOCAL_TOKEN_SET),
       path: "/",
     });
 
