@@ -3,13 +3,18 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, ShoppingCart, Search } from "lucide-react";
+import ScrollToggle from "@/components/shared/chek-scroll";
+import TopBar from "../topBar/top-bar";
+import Logo from "@/components/shared/logo";
+
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const cartCount = 0;
 
   return (
-   
+   <ScrollToggle>
+      <TopBar/>
       <nav className="w-full bg-neutral-900/95 backdrop-blur-md border-b border-neutral-700 text-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4">
           <div className="relative flex items-center justify-between h-16">
@@ -28,42 +33,7 @@ export default function Navbar() {
               className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 flex items-center gap-3"
             >
               {/* SVG Logo */}
-              <div className="flex items-center justify-center w-11 h-11 rounded-xl bg-purple-500/15 border border-purple-500/20">
-                <svg
-                  width="26"
-                  height="26"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {/* Laptop */}
-                  <rect
-                    x="4"
-                    y="5"
-                    width="16"
-                    height="10"
-                    rx="2"
-                    stroke="#A855F7"
-                    strokeWidth="1.8"
-                  />
-
-                  <path
-                    d="M2 18H22"
-                    stroke="#A855F7"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                  />
-
-                  {/* Electronic Pulse */}
-                  <path
-                    d="M9 10L11 8L13 12L15 10"
-                    stroke="#C084FC"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
+                <Logo/>
 
               {/* Brand */}
               <div className="flex flex-col leading-tight">
@@ -125,7 +95,7 @@ export default function Navbar() {
               <Link
                 href="/cart"
                 className="relative p-2 hover:bg-neutral-800 rounded-xl transition"
-              >
+                >
                 <ShoppingCart size={22} className="text-neutral-100" />
 
                 {cartCount > 0 && (
@@ -194,6 +164,7 @@ export default function Navbar() {
           </div>
         )}
       </nav>
+                </ScrollToggle>
     
   );
 }

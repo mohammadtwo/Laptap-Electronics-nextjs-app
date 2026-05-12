@@ -1,5 +1,4 @@
 import Footer from "./footer/footer";
-import TopBar from "./header/header/TopBar";
 import Navbar from "./header/navbar/navbar";
 
 
@@ -12,7 +11,7 @@ export default function GlobalLayout({
     <>
       <div className="sm:h-[101.5px] h-16" />
       <header className="fixed  w-full top-0 right-0 left-0 z-50">
-        <TopBar />
+        
         <Navbar />
       </header>
 

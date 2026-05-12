@@ -53,8 +53,8 @@ export default function ScrollToggle({
 
   return (
     <div
-      className={` right-0 left-0  ease-in-out z-10 ${
-        isVisible ? "top-0  sticky " : "-top-full absolute"
+      className={`absolute right-0 left-0 transition-all duration-500   ease-in-out z-10 ${
+        isVisible ? "top-0  " : "sm:top-[-36.8px] absolute"
       }`}
     >
       {children}
