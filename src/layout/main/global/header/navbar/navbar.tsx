@@ -1,15 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import {  useState } from "react";
 import Link from "next/link";
 import { Menu, X, ShoppingCart, Search } from "lucide-react";
+import ScrollToggle from "@/components/shared/chek-scroll";
+import TopBar from "../topBar/top-bar";
+import Logo from "@/components/shared/logo";
+import useGlobalSearch from "./hooks/useGlobalSearch";
+
+
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const {inputValue, setInputValue} = useGlobalSearch()
+
   const cartCount = 0;
 
   return (
-   
+    <ScrollToggle>
+      <TopBar />
       <nav className="w-full bg-neutral-900/95 backdrop-blur-md border-b border-neutral-700 text-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4">
           <div className="relative flex items-center justify-between h-16">
@@ -28,42 +37,7 @@ export default function Navbar() {
               className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 flex items-center gap-3"
             >
               {/* SVG Logo */}
-              <div className="flex items-center justify-center w-11 h-11 rounded-xl bg-purple-500/15 border border-purple-500/20">
-                <svg
-                  width="26"
-                  height="26"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {/* Laptop */}
-                  <rect
-                    x="4"
-                    y="5"
-                    width="16"
-                    height="10"
-                    rx="2"
-                    stroke="#A855F7"
-                    strokeWidth="1.8"
-                  />
-
-                  <path
-                    d="M2 18H22"
-                    stroke="#A855F7"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                  />
-
-                  {/* Electronic Pulse */}
-                  <path
-                    d="M9 10L11 8L13 12L15 10"
-                    stroke="#C084FC"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
+              <Logo />
 
               {/* Brand */}
               <div className="flex flex-col leading-tight">
@@ -100,6 +74,8 @@ export default function Navbar() {
 
               <input
                 type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
                 placeholder="جستجوی محصول..."
                 className="w-full bg-transparent outline-none px-2 text-sm placeholder:text-neutral-500"
               />
@@ -108,14 +84,14 @@ export default function Navbar() {
             {/* Desktop Right Side */}
             <div className="hidden md:flex items-center gap-4">
               <Link
-                href="/login"
+                href="/auth?status=login"
                 className="text-neutral-300 hover:text-white transition"
               >
                 ورود
               </Link>
 
               <Link
-                href="/signup"
+                href="/auth?status=signup"
                 className="bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-xl transition shadow-lg shadow-purple-500/20"
               >
                 ثبت نام
@@ -171,14 +147,14 @@ export default function Navbar() {
               </Link>
 
               <Link
-                href="/login"
+                href="/auth?status=login"
                 className="w-full text-neutral-200 hover:text-purple-300 transition"
               >
                 ورود
               </Link>
 
               <Link
-                href="/signup"
+                href="/auth?status=signup"
                 className="w-full bg-purple-500 hover:bg-purple-600 py-2 rounded-xl transition"
               >
                 ثبت نام
@@ -194,6 +170,6 @@ export default function Navbar() {
           </div>
         )}
       </nav>
-    
+    </ScrollToggle>
   );
 }

@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination} from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import { useRef} from "react";
+import Image from "next/image";
 
 
 
@@ -43,7 +44,10 @@ export function Slider() {
 
 
   return (
-    <div className="relative h-96 w-full mx-auto">
+    <div
+      className="relative w-full mx-auto h-55 sm:h-75 md:h-95 lg:h-105 xl:h-120
+"
+    >
       {/* دکمه‌های سفارشی با طراحی دلخواه */}
       <div className="sm:block absolute hidden bottom-1 right-[53%] -translate-y-1/2 z-20">
         <button
@@ -124,20 +128,33 @@ export function Slider() {
         className="mySwiper h-full "
       >
         <SwiperSlide>
-          <div className="bg-linear-to-r from-blue-500 to-purple-600 h-full flex items-center justify-center text-white text-2xl">
-            Slide 1
-          </div>
+          <Image
+            src={
+              "/assets/banner/69ca4673b747a51e033d8e0f3c1ec69391b2ce61_1778436859.jpg"
+            }
+            alt=""
+            height={400}
+            width={1536}
+            className=" w-full h-full inline-block  object-cover"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <div className="bg-linear-to-r from-green-500 to-teal-600 h-full flex items-center justify-center text-white text-2xl">
-            Slide 2
-          </div>
+          <Image
+            src={
+              "/assets/banner/cb10dbe7ccd1e6e9dad5adc0872fa1f817537eb5_1776723273.jpg"
+            }
+            alt=""
+            height={400}
+            width={1536}
+            
+            className="w-full h-full inline-block object-cover "
+          />
         </SwiperSlide>
-        <SwiperSlide>
+        {/* <SwiperSlide>
           <div className="bg-linear-to-r from-red-500 to-pink-600 h-full flex items-center justify-center text-white text-2xl">
             Slide 3
           </div>
-        </SwiperSlide>
+        </SwiperSlide> */}
 
         <div className="autoplay-progress" slot="container-end">
           <svg viewBox="0 0 48 48" ref={progressCircle}>

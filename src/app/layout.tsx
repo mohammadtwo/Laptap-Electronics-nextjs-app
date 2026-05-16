@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl" suppressHydrationWarning>
       <body className="bg-neutral-50 dark:bg-neutral-100 text-neutral-800 w-full  flex flex-col font-[Vazirmatn]">
-        <ThemeProvider>{children}</ThemeProvider>
+        {children}
         <ToastContainer position="top-right" autoClose={3000} />
       </body>
     </html>
