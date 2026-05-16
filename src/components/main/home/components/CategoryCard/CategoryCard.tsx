@@ -1,12 +1,9 @@
 // components/categories/CategoryCard.tsx
 import Link from "next/link";
 import Image from "next/image";
+import { Props } from "@/types/types";
 
-interface Props {
-  title: string;
-  href: string;
-  image: string;
-}
+
 
 export default function CategoryCard({ title, href, image }: Props) {
   return (

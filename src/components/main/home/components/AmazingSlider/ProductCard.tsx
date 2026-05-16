@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { Product } from "./type";
+import { Product } from "../Product/type";
+
 
 interface Props {
   product: Product;

@@ -1,5 +1,7 @@
+import { ProductsResponse } from "@/types/types";
+import { Product } from "../Product/type";
 import AmazingSliderClient from "./AmazingSliderClient";
-import { Product, ProductsResponse } from "./type";
+
 
 async function getProducts(): Promise<Product[]> {
   const res = await fetch(

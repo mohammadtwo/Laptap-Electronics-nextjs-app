@@ -1,10 +1,11 @@
-export interface ApiResponse<T> {
+// types/product.ts
+export interface ProductResponse {
   success: boolean;
   count: number;
   total: number;
   page: number;
   pages: number;
-  data: T[];
+  data: Product[];
 }
 
 export interface Product {
@@ -23,5 +24,3 @@ export interface Product {
   updatedAt: string;
   __v: number;
 }
-
-export type ProductsResponse = ApiResponse<Product>;

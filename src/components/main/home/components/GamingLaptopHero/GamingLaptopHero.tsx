@@ -16,7 +16,10 @@ export default function GamingLaptopHero() {
           playsInline
           preload="auto"
         >
-          <source src="/videos/gaming-laptop.mp4" type="video/mp4" />
+          <source
+            src="\videos\gaming-laptop.mp4"
+            type="video/mp4"
+          />
         </video>
 
         {/* Gradient Overlay */}

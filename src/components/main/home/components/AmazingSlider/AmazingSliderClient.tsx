@@ -3,10 +3,11 @@
 import { useState, useRef} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
-import { Product } from "./type";
+
 import AmazingHeader from "./AmazingHeader";
 import ProductCard from "./ProductCard";
 import MoreCard from "./MoreCard"; // کامپوننت مخصوص اسلاید «مشاهده بیشتر» (در پایین توضیح می‌دم)
+import { Product } from "../Product/type";
 
 interface Props {
   products?: Product[];
